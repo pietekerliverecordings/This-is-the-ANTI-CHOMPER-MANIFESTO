@@ -4,164 +4,173 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Anti-Chomper // Screen Saver</title>
+<title>CHOMPER.EXE — FATAL ERROR</title>
 
 <style>
 * { box-sizing: border-box; }
 
-html, body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #050705;
-    color: #8aff8a;
-    font-family: "Courier New", monospace;
-}
-
 body {
+    margin: 0;
+    min-height: 100vh;
+    background: #000;
+    color: #ff2424;
+    font-family: "Courier New", monospace;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    text-shadow: 0 0 8px #39ff1466;
+    overflow: hidden;
 }
 
-.screen {
-    width: 90%;
-    max-width: 900px;
-    animation: breathe 5s ease-in-out infinite;
+main {
+    width: 94%;
+    max-width: 1000px;
 }
 
-.logo {
-    font-size: 12px;
-    letter-spacing: 5px;
-    color: #467b46;
-    margin-bottom: 55px;
-}
-
-.message {
-    font-size: clamp(22px, 4vw, 42px);
-    font-weight: bold;
-    line-height: 1.4;
-    min-height: 3em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 1;
-    transition: opacity 1.2s ease;
-}
-
-.sub {
-    margin-top: 35px;
-    color: #467b46;
-    font-size: 12px;
-    letter-spacing: 2px;
-}
-
-.cursor {
+.alert {
     display: inline-block;
-    width: 8px;
-    height: 16px;
-    background: #8aff8a;
-    margin-left: 8px;
-    animation: blink 1s steps(2) infinite;
+    border: 3px solid #ff2424;
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 14px;
+    letter-spacing: 4px;
+    margin-bottom: 35px;
+    animation: blink 0.8s steps(2, start) infinite;
 }
 
-.footer {
+h1 {
+    font-size: clamp(42px, 9vw, 100px);
+    line-height: 0.95;
+    letter-spacing: -5px;
+    margin: 0;
+    font-weight: 900;
+    text-shadow: 5px 5px 0 #5a0000;
+}
+
+h2 {
+    font-size: clamp(19px, 4vw, 36px);
+    margin: 25px 0;
+    color: #fff;
+}
+
+p {
+    font-size: clamp(12px, 2vw, 16px);
+    line-height: 1.8;
+}
+
+.system {
+    border-top: 1px solid #4d1717;
+    border-bottom: 1px solid #4d1717;
+    margin: 35px auto;
+    padding: 15px 0;
+    color: #ff6666;
+}
+
+button {
+    background: #ff2424;
+    color: #000;
+    border: 0;
+    padding: 14px 22px;
+    font: bold 14px "Courier New", monospace;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button:hover {
+    background: white;
+}
+
+footer {
     position: fixed;
-    bottom: 28px;
+    bottom: 15px;
     left: 0;
     right: 0;
-    font-size: 11px;
-    color: #294b29;
+    color: #6e2222;
+    font-size: 10px;
     letter-spacing: 2px;
 }
 
 @keyframes blink {
-    50% { opacity: 0; }
-}
-
-@keyframes breathe {
-    0%, 100% { opacity: .85; }
-    50% { opacity: 1; }
+    to { visibility: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation: none !important;
-        transition: none !important;
     }
 }
 </style>
 </head>
 
 <body>
-<div class="screen">
-    <div class="logo">TAPER.EXE &nbsp; // &nbsp; SYSTEM IDLE</div>
+<main>
+    <div class="alert">!!! CRITICAL AUDIO FAILURE !!!</div>
 
-    <div class="message" id="message">
-        PLEASE STAND BY.
+    <h1>SHUT THE<br>FUCK UP.</h1>
+
+    <h2>THE FUCKING MICS ARE ROLLING.</h2>
+
+    <div class="system">
+        <p id="error">FATAL ERROR 0xCH0MP3R</p>
+        <p id="message">
+            30-MINUTE PHISH JAM DETECTED.<br>
+            31-MINUTE BRO CONVERSATION DETECTED.
+        </p>
+        <p>REC ● &nbsp; 24-BIT / 48 kHz &nbsp; AUD QUALITY: RUINED</p>
     </div>
 
-    <div class="sub" id="sub">
-        AUDIO PRESERVATION SYSTEM
-    </div>
+    <p>
+        YOUR CONVERSATION IS BEING ARCHIVED<br>
+        FOR FUTURE GENERATIONS TO HATE YOU.
+    </p>
 
-    <div><span class="cursor"></span></div>
-</div>
+    <button onclick="nextError()">[ TRY TO RESTORE THE RECORDING ]</button>
+</main>
 
-<div class="footer">
-    ALL RIGHTS RESERVED BY THE CHOMPERS YOU DIDN'T ASK FOR
-</div>
+<footer>
+    TAPER SYSTEMS INC. — YOUR MOUTH IS A FUCKING BUG.
+</footer>
 
 <script>
-const messages = [
-    ["PLEASE STAND BY.", "WAITING FOR THE CHOMPERS TO SHUT UP"],
-    ["24-BIT / 48 kHz", "14-BIT CONVERSATION DETECTED"],
-    ["SIGNAL: CLEAN", "NEIGHBOR: FUCKING LOUD"],
-    ["RECORDING...", "YOUR LIFE STORY IS NOW IN THE ARCHIVE"],
-    ["MICROPHONES ARE NOT DECORATIONS.", "NEITHER IS COMMON SENSE."],
-    ["PHISH: 30-MINUTE JAM", "BRO: 31-MINUTE CONVERSATION"],
-    ["TAPER MODE: ACTIVE", "CHOMPER FILTER: NOT INVENTED YET"],
-    ["LOW NOISE FLOOR", "HIGH NOISE NEIGHBOR"],
-    ["PLEASE ENJOY THE MUSIC.", "YOUR PODCAST CAN WAIT."],
-    ["AUD MASTERING: 6 HOURS", "CHOMPER: 2 HOURS OF NONSTOP BULLSHIT"],
-    ["STEALTH MODE: ON", "SOCIAL AWARENESS: OFF"],
-    ["ARCHIVE QUALITY: EXCELLENT", "PARKING STORY: PERMANENT"],
-    ["YOUR WHISPER IS NOT A WHISPER.", "THE MICROPHONES HEARD EVERYTHING."],
-    ["TRACKING: LEFT / RIGHT", "CHOMPING: EVERYWHERE"],
-    ["THE BAND IS PLAYING.", "TAKE THE FUCKING HINT."],
-    ["PLEASE LOWER YOUR VOICE.", "THIS IS NOT YOUR LIVING ROOM."],
-    ["RECORDING SAVED.", "YOUR CONVERSATION SAVED FOREVER."],
-    ["NO TALKING DURING THE QUIET PART.", "IT'S NOT COMPLICATED."],
-    ["RESPECT THE MUSIC.", "RESPECT THE RECORDING."],
-    ["SYSTEM IDLE.", "CHOMPER STILL RUNNING."]
+const errors = [
+    ["FATAL ERROR 0xCH0MP3R",
+     "30-MINUTE PHISH JAM DETECTED.<br>31-MINUTE BRO CONVERSATION DETECTED."],
+
+    ["WARNING: STEALTH COMPROMISED",
+     "YOUR WHISPER IS PEAKING AT -3 dBFS."],
+
+    ["HARD DRIVE FAILURE",
+     "NO SPACE LEFT FOR ANOTHER FUCKING PARKING STORY."],
+
+    ["AUDIO DRIVER NOT RESPONDING",
+     "THE BAND IS PLAYING.<br>WHY THE FUCK ARE YOU TALKING?"],
+
+    ["ARCHIVE.ORG UPLOAD COMPLETE",
+     "YOUR BULLSHIT HAS ACHIEVED IMMORTALITY."],
+
+    ["NEUMANN MICROPHONES ONLINE",
+     "CONGRATULATIONS.<br>WE CAN HEAR YOU BREATHING."],
+
+    ["SIGNAL-TO-NOISE RATIO: FUCKED",
+     "THE CHOMPER IS NOW THE LEAD INSTRUMENT."],
+
+    ["ERROR 404: SELF-AWARENESS",
+     "THE MUSIC IS LIVE.<br>YOUR CONVERSATION SHOULD BE DEAD."],
+
+    ["MASTERING FAILED",
+     "6 HOURS OF EDITING.<br>ONE ASSHOLE. ONE UNFIXABLE PROBLEM."],
+
+    ["SYSTEM SHUTDOWN INITIATED",
+     "PLEASE CLOSE YOUR MOUTH BEFORE CLOSING THIS WINDOW."]
 ];
 
-const message = document.getElementById("message");
-const sub = document.getElementById("sub");
+let index = 0;
 
-let current = -1;
-
-function nextMessage() {
-    message.style.opacity = 0;
-
-    setTimeout(() => {
-        let next;
-        do {
-            next = Math.floor(Math.random() * messages.length);
-        } while (next === current && messages.length > 1);
-
-        current = next;
-        message.textContent = messages[current][0];
-        sub.textContent = messages[current][1];
-        message.style.opacity = 1;
-    }, 1200);
+function nextError() {
+    index = (index + 1) % errors.length;
+    document.getElementById("error").textContent = errors[index][0];
+    document.getElementById("message").innerHTML = errors[index][1];
 }
-
-nextMessage();
-setInterval(nextMessage, 6500);
 </script>
 </body>
 </html>
