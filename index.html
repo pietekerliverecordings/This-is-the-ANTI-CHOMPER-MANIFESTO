@@ -2,130 +2,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>The Anti-Chomper Manifesto</title>
+<title>Anti-Chomper // Screen Saver</title>
+
 <style>
-body {
-    margin: 40px auto;
-    max-width: 650px;
-    padding: 0 15px;
-    font: 18px/1.6 sans-serif;
+* { box-sizing: border-box; }
+
+html, body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #050705;
+    color: #8aff8a;
+    font-family: "Courier New", monospace;
 }
-h1, h2 { line-height: 1.2; }
-h1 { margin-bottom: 0; }
-h2 { margin-top: 2em; }
-a { color: inherit; }
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-shadow: 0 0 8px #39ff1466;
+}
+
+.screen {
+    width: 90%;
+    max-width: 900px;
+    animation: breathe 5s ease-in-out infinite;
+}
+
+.logo {
+    font-size: 12px;
+    letter-spacing: 5px;
+    color: #467b46;
+    margin-bottom: 55px;
+}
+
+.message {
+    font-size: clamp(22px, 4vw, 42px);
+    font-weight: bold;
+    line-height: 1.4;
+    min-height: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 1.2s ease;
+}
+
+.sub {
+    margin-top: 35px;
+    color: #467b46;
+    font-size: 12px;
+    letter-spacing: 2px;
+}
+
+.cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: #8aff8a;
+    margin-left: 8px;
+    animation: blink 1s steps(2) infinite;
+}
+
+.footer {
+    position: fixed;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    font-size: 11px;
+    color: #294b29;
+    letter-spacing: 2px;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+@keyframes breathe {
+    0%, 100% { opacity: .85; }
+    50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
 </style>
 </head>
+
 <body>
+<div class="screen">
+    <div class="logo">TAPER.EXE &nbsp; // &nbsp; SYSTEM IDLE</div>
 
-<h1>The Anti-Chomper Manifesto</h1>
-<p><em>Because apparently this needs to be said.</em></p>
+    <div class="message" id="message">
+        PLEASE STAND BY.
+    </div>
 
-<p>A band. An audience. Some microphones.</p>
+    <div class="sub" id="sub">
+        AUDIO PRESERVATION SYSTEM
+    </div>
 
-<p>Three things that should work together beautifully.</p>
+    <div><span class="cursor"></span></div>
+</div>
 
-<p>And then there's you, having a fucking conversation.</p>
+<div class="footer">
+    ALL RIGHTS RESERVED BY THE CHOMPERS YOU DIDN'T ASK FOR
+</div>
 
-<p>Welcome to the concert. The band is playing. The guitarist is
-doing something incredible. The crowd is locked in. A taper is
-capturing the whole thing for people who weren't lucky enough
-to be there.</p>
+<script>
+const messages = [
+    ["PLEASE STAND BY.", "WAITING FOR THE CHOMPERS TO SHUT UP"],
+    ["24-BIT / 48 kHz", "14-BIT CONVERSATION DETECTED"],
+    ["SIGNAL: CLEAN", "NEIGHBOR: FUCKING LOUD"],
+    ["RECORDING...", "YOUR LIFE STORY IS NOW IN THE ARCHIVE"],
+    ["MICROPHONES ARE NOT DECORATIONS.", "NEITHER IS COMMON SENSE."],
+    ["PHISH: 30-MINUTE JAM", "BRO: 31-MINUTE CONVERSATION"],
+    ["TAPER MODE: ACTIVE", "CHOMPER FILTER: NOT INVENTED YET"],
+    ["LOW NOISE FLOOR", "HIGH NOISE NEIGHBOR"],
+    ["PLEASE ENJOY THE MUSIC.", "YOUR PODCAST CAN WAIT."],
+    ["AUD MASTERING: 6 HOURS", "CHOMPER: 2 HOURS OF NONSTOP BULLSHIT"],
+    ["STEALTH MODE: ON", "SOCIAL AWARENESS: OFF"],
+    ["ARCHIVE QUALITY: EXCELLENT", "PARKING STORY: PERMANENT"],
+    ["YOUR WHISPER IS NOT A WHISPER.", "THE MICROPHONES HEARD EVERYTHING."],
+    ["TRACKING: LEFT / RIGHT", "CHOMPING: EVERYWHERE"],
+    ["THE BAND IS PLAYING.", "TAKE THE FUCKING HINT."],
+    ["PLEASE LOWER YOUR VOICE.", "THIS IS NOT YOUR LIVING ROOM."],
+    ["RECORDING SAVED.", "YOUR CONVERSATION SAVED FOREVER."],
+    ["NO TALKING DURING THE QUIET PART.", "IT'S NOT COMPLICATED."],
+    ["RESPECT THE MUSIC.", "RESPECT THE RECORDING."],
+    ["SYSTEM IDLE.", "CHOMPER STILL RUNNING."]
+];
 
-<p>And you're explaining your weekend to Dave.</p>
+const message = document.getElementById("message");
+const sub = document.getElementById("sub");
 
-<p><strong>Dave doesn't need to know. We all need you to shut up.</strong></p>
+let current = -1;
 
-<h2>What the fuck is a chomper?</h2>
+function nextMessage() {
+    message.style.opacity = 0;
 
-<p>A chomper is someone who treats a concert as background music
-for a conversation that absolutely could have happened tomorrow.</p>
+    setTimeout(() => {
+        let next;
+        do {
+            next = Math.floor(Math.random() * messages.length);
+        } while (next === current && messages.length > 1);
 
-<p>It's the guy discussing work during the quietest song of the set.
-It's the couple recapping their holiday over a guitar solo.
-It's the drunk philosopher who has just discovered the meaning
-of life and needs to share it with everyone within microphone range.</p>
+        current = next;
+        message.textContent = messages[current][0];
+        sub.textContent = messages[current][1];
+        message.style.opacity = 1;
+    }, 1200);
+}
 
-<p>It's you, if you're doing this shit.</p>
-
-<h2>Some of us are recording this.</h2>
-
-<p>Those little microphones aren't fashion accessories.</p>
-
-<p>Someone spent serious money on microphones, cables, preamps
-and recorders. Someone spent hours getting the levels right.
-Someone will spend more hours editing, mastering and sharing
-the recording for free.</p>
-
-<p>All to preserve a beautiful moment in live music.</p>
-
-<p>And your contribution is a 14-minute discussion about parking.</p>
-
-<p>Congratulations. You're now part of the archive.</p>
-
-<h2>A special message to Phish fans</h2>
-
-<p>The band has spent 25 minutes building a jam from a whisper
-into a wall of sound that makes the universe briefly make sense.</p>
-
-<p>Then, during the quietest passage, you lean over and say:</p>
-
-<p><em>"Bro, remember that time in Vegas?"</em></p>
-
-<p>No, bro. We're trying to remember this fucking jam.</p>
-
-<p>Enjoy the music. Dance. Cheer. Lose your mind.</p>
-
-<p>Just don't mistake a 30-minute jam for a 30-minute opportunity
-to tell your buddy a story.</p>
-
-<h2>We're not asking for silence.</h2>
-
-<p>This is a concert, not a library.</p>
-
-<p>We want the applause. The cheers. The laughter. The collective
-roar when the opening notes hit. The sound of thousands of people
-experiencing something together.</p>
-
-<p>That's what makes a great audience recording an audience recording.</p>
-
-<p><strong>We want the crowd. We don't want your fucking podcast.</strong></p>
-
-<h2>It's really not that complicated.</h2>
-
-<ul>
-<li>The band is playing. Listen.</li>
-<li>Need to talk? Take it somewhere else.</li>
-<li>See microphones? Remember that sound travels.</li>
-<li>Someone asks you to keep it down? Don't be an asshole.</li>
-<li>Having a great time? Excellent. Let everyone else have one too.</li>
-</ul>
-
-<h2>One last thing.</h2>
-
-<p>Somewhere, years from now, someone will discover a recording
-of a legendary show. They'll put on their headphones. They'll
-close their eyes. They'll hear a performance that would otherwise
-have been lost to time.</p>
-
-<p>And then they'll hear you explaining cryptocurrency.</p>
-
-<p>Don't be that person.</p>
-
-<p>You came to hear the band.</p>
-
-<p><strong>Hear the fucking band.</strong></p>
-
-<hr>
-
-<p><strong>Respect the music. Respect the recording. Don't be a chomper.</strong></p>
-
-<p><small>An entirely unnecessary manifesto about an entirely
-avoidable problem. Written by a taper who would really like
-to hear the guitar solo.</small></p>
-
+nextMessage();
+setInterval(nextMessage, 6500);
+</script>
 </body>
 </html>
